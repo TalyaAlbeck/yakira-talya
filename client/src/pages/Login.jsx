@@ -8,33 +8,16 @@ export default function Login() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     (async () => await fetchData(`users`, "data", setUsersData, setError))();
-  //   }, []);
-
   async function handleSubmit(e) {
     e.preventDefault();
     const fetchedUser = await postRequest({ username, password }, "login");
     if (fetchedUser.status === 200) {
-      alert(fetchedUser.text);
-      //   navigate(`/home/${currentUser.id}`);
+      localStorage.setItem("currentUser", username);
+      navigate(`/home/${username}`);
     } else if (fetchedUser.status === 404) {
-      alert(fetchedUser.text);
-      // } else {
-      //   setError("this user does not exist");
+      setError(fetchedUser.text);
     }
   }
-
-  //   function checkUserData() {
-  //     const currentUser = usersData.filter(
-  //       (user) => user.username === username && user.website === password
-  //     )[0];
-  //     localStorage.setItem(
-  //       "currentUserId",
-  //       JSON.stringify(currentUser?.id) || null
-  //     );
-  //     return currentUser;
-  //   }
 
   useEffect(() => {
     window.history.pushState(null, "", window.location.href);
