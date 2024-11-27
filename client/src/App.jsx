@@ -8,7 +8,7 @@ import HomeLayout from "./pages/HomeLayout";
 // import Posts from "./pages/Posts";
 // import Todos from "./pages/Todos";
 // import Info from "./pages/Info";
-// import Details from "./pages/Details";
+import Details from "./pages/Details";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path="/">
             <Route index element={<Login />} />
             <Route path="register" element={<Register />} />
-            {/* <Route path="details" element={<Details />} /> */}
+            <Route path="details" element={<Details />} />
             <Route path="home/:id/" element={<HomeLayout />}>
               {/* <Route path="albums" element={<Albums />} />
               <Route path="posts" element={<Posts />} />
