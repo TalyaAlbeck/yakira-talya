@@ -14,7 +14,7 @@ export default function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const currentUser = postRequest({ username, password });
+    const currentUser = postRequest({ username, password }, "login");
     if (currentUser) {
       alert("success");
       //   navigate(`/home/${currentUser.id}`);
