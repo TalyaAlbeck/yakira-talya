@@ -13,14 +13,16 @@ con.connect((err) => {
 });
 
 function addItem(type, columns, item) {
+  let response;
   console.log("connected");
-  con.query(
-    `INSERT INTO ${type} (${columns}) VALUES (${item.username}, ${item.email}, ${item.phone})`,
-    (err, res) => {
-      if (err) throw err;
-      console.log(`${type} added!`);
-    }
-  );
+  con.query(`INSERT INTO ${type} (${columns}) VALUES (${item})`, (err, res) => {
+    if (err) {
+      response = err;
+    } else response = "row added!";
+    console.log("response: ", response);
+    console.log(`${type} added!`);
+  });
+  return response;
 }
 
 exports.addItem = addItem;
