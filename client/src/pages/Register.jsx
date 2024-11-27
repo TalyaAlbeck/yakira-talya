@@ -14,6 +14,7 @@ export default function Register() {
     e.preventDefault();
     if (password !== verifyPassword) {
       setError("Verified password does not equal to password");
+      console.log("username: ", username);
     } else {
       let fetchedUser = await postRequest({ username, password }, "register");
       if (fetchedUser.status === 200) {

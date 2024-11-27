@@ -17,7 +17,7 @@ function addItem(type, columns, item) {
   console.log("connected");
   con.query(`INSERT INTO ${type} (${columns}) VALUES (${item})`, (err, res) => {
     if (err) {
-      response = err;
+      throw err
     } else response = "row added!";
     console.log("response: ", response);
     console.log(`${type} added!`);
@@ -26,3 +26,4 @@ function addItem(type, columns, item) {
 }
 
 exports.addItem = addItem;
+
