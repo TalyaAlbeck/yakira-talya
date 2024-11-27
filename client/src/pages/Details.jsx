@@ -12,7 +12,7 @@ export default function Details() {
     e.preventDefault();
     if (email !== "" && phone !== "") {
       const username = JSON.parse(localStorage.getItem("currentUser"));
-      const result = postRequest();
+      const result = postRequest({ username, email, phone }, "register/info");
       //   const url = `${API_URL}/users/${userId}`;
       //   const updateOption = {
       //     method: "POST",
