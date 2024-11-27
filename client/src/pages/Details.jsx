@@ -11,8 +11,20 @@ export default function Details() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (email !== "" && phone !== "") {
-      const username = JSON.parse(localStorage.getItem("currentUser"));
-      const result = postRequest({ username, email, phone }, "register/info");
+      const username = localStorage.getItem("currentUser");
+      // const result = postRequest({ username, email, phone }, "register/info");
+
+      let fetchedUser = await postRequest(
+        { username, email, phone },
+        "register/info"
+      );
+      console.log("fetchedUser: ", fetchedUser);
+      if (fetchedUser.status === 200) {
+        console.log("username: ", username);
+        navigate(`/home/${username}`);
+      } else if (fetchedUser.status === 450) {
+        setError(fetchedUser.text);
+      }
       //   const url = `${API_URL}/users/${userId}`;
       //   const updateOption = {
       //     method: "POST",
@@ -40,6 +52,7 @@ export default function Details() {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
+      <p>{error}</p>
       <h1>Details</h1>
       <label>email:</label>
       <input
@@ -56,7 +69,6 @@ export default function Details() {
       />
       <br />
       <button>Submit</button>
-      <p>{error}</p>
     </form>
   );
 }

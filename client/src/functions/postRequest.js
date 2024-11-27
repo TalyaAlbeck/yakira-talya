@@ -13,5 +13,6 @@ export const postRequest = async (obj, path = "") => {
     return { text: parsedResponse.text, status: request.status };
   } catch (err) {
     console.log(err);
+    return { status: 450, text: "Fetch error" };
   }
 };
