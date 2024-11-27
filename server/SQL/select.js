@@ -36,7 +36,7 @@ function checkUser(name, password, response) {
 
 exports.checkUser = checkUser;
 
-function checkUserExisting(name, password, email, phone, response) {
+function checkUserExisting(name, password, response) {
   console.log("connected");
 
   con.query(
@@ -44,8 +44,6 @@ function checkUserExisting(name, password, email, phone, response) {
     (err, res) => {
       if (err) throw err;
       if (res.length === 0) {
-        const userResult = addItem("user", "username, email, phone", `${JSON.stringify(name)}, ${JSON.stringify(email)}, ${JSON.stringify(phone)}`)
-        res.json(userResult);
         const passwordResult = addItem("password", "username, password", `${JSON.stringify(username)}, ${JSON.stringify(password)}`)
         res.json(passwordResult);
         response.status(200).send({ text: "user entered" });
