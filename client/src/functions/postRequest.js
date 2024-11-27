@@ -8,10 +8,11 @@ export const postRequest = async (obj, path = "") => {
   };
   try {
     const request = await fetch(`http://localhost:3000/${path}`, postOptions);
-    if (!request.ok) return "Something went wrong";
     const parsedResponse = await request.json();
-    return parsedResponse;
+    return { text: parsedResponse.text, status: request.status };
   } catch (err) {
     console.log(err);
   }
 };
+
+//

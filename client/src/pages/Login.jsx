@@ -12,14 +12,16 @@ export default function Login() {
   //     (async () => await fetchData(`users`, "data", setUsersData, setError))();
   //   }, []);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const currentUser = postRequest({ username, password }, "login");
-    if (currentUser) {
-      alert("success");
+    const fetchedUser = await postRequest({ username, password }, "login");
+    if (fetchedUser.status === 200) {
+      alert(fetchedUser.text);
       //   navigate(`/home/${currentUser.id}`);
-    } else {
-      setError("this user does not exist");
+    } else if (fetchedUser.status === 404) {
+      alert(fetchedUser.text);
+      // } else {
+      //   setError("this user does not exist");
     }
   }
 

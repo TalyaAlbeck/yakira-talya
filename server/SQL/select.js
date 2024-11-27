@@ -12,19 +12,25 @@ con.connect((err) => {
   if (err) throw err;
 });
 
-function checkUser(name, password) {
+function checkUser(name, password, response) {
   console.log("connected");
-  try {
-    con.query(
-      `SELECT * FROM password WHERE username = ${name} AND password = ${password}`,
-      (err, res) => {
-        if (err) throw err;
-        console.log(`${type} added!`);
+
+  con.query(
+    `SELECT * FROM password WHERE username = ${JSON.stringify(
+      name
+    )} AND password = ${JSON.stringify(password)}`,
+    (err, res) => {
+      if (err) throw err;
+      console.log("res: ", res);
+
+      if (res.length === 0) {
+        response.status(404).send({
+          text: "username/password are incorrect",
+        });
       }
-    );
-  } catch (err) {
-    console.log("this user does not exist");
-  }
+      response.status(200).send({ text: "user entered" });
+    }
+  );
 }
 
-exports.addItem = addItem;
+exports.checkUser = checkUser;
