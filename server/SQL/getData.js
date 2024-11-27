@@ -12,28 +12,27 @@ con.connect((err) => {
   if (err) throw err;
 });
 
-function addItem(type, columns, item, username = "", response) {
+function getData(username, columns, table, response) {
   console.log("connected");
   con.query(`SELECT id FROM user WHERE username = ${username}`, (err, res) => {
     if (err) {
       console.log(err);
     } else {
       con.query(
-        `INSERT INTO ${type} (${columns}) VALUES (${res[0].id}, ${item})`,
+        `SELECT ${columns} FROM ${table} WHERE ${table}.user_id = ${res[0].id}`,
         (err, res) => {
-          if (err) {
+          if (err) throw err;
+          if (res.length === 0) {
             response.status(404).send({
-              text: `was not able to add`,
+              text: `you have no ${table}`,
             });
           }
-          response.status(200).send({ text: "text added" });
-          console.log(`${type} added!`);
+          response.status(200).send({ text: res });
         }
       );
     }
   });
-
   return response;
 }
 
-exports.addItem = addItem;
+exports.getData = getData;

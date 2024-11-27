@@ -1,6 +1,6 @@
-export const postRequest = async (obj, path = "") => {
+export const deleteRequest = async (obj, path = "") => {
   const postOptions = {
-    method: "POST",
+    method: "DELETE",
     headers: {
       "Content-Type": `application/json`,
     },
