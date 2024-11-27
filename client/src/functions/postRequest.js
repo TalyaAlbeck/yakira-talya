@@ -14,5 +14,3 @@ export const postRequest = async (obj, path = "") => {
     console.log(err);
   }
 };
-
-//
