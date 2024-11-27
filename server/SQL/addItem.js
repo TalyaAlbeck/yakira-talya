@@ -8,17 +8,19 @@ var con = mysql.createConnection({
     database: "usersDataBase"
 });
 
+con.connect((err) => {
+    if (err) throw err;
+});
+
 function addItem(type, columns, item) {
-    con.connect((err) => {
-        if (err) throw err;
-        console.log("connected");
-        con.query(`INSERT INTO ${type} (${columns}) VALUES (${item.username}, ${item.email}, ${item.phone})`, (err, res) => {
-            if (err) throw err;
-            console.log(`${type} added!`);
-
-        })
-
+    let response;
+    console.log("connected");
+    con.query(`INSERT INTO ${type} (${columns}) VALUES (${item})`, (err, res) => {
+        if (err) { response = err } else response = "row added!"
+        console.log('response: ', response);
+        console.log(`${type} added!`);
     })
+    return response;
 }
 
 exports.addItem = addItem;
