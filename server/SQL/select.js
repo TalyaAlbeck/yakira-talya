@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const fs = require("fs");
+const { addItem } = require("./addItem");
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -34,3 +35,28 @@ function checkUser(name, password, response) {
 }
 
 exports.checkUser = checkUser;
+
+function checkUserExisting(name, password, email, phone, response) {
+  console.log("connected");
+
+  con.query(
+    `SELECT * FROM password WHERE username = ${JSON.stringify(name)} AND password = ${JSON.stringify(password)}`,
+    (err, res) => {
+      if (err) throw err;
+      if (res.length === 0) {
+        const userResult = addItem("user", "username, email, phone", `${JSON.stringify(name)}, ${JSON.stringify(email)}, ${JSON.stringify(phone)}`)
+        res.json(userResult);
+        const passwordResult = addItem("password", "username, password", `${JSON.stringify(username)}, ${JSON.stringify(password)}`)
+        res.json(passwordResult);
+        response.status(200).send({ text: "user entered" });
+      } else {
+        response.status(450).send({
+          text: "this user is alreadt exists",
+        });
+      }
+    }
+  );
+}
+
+exports.checkUserExisting = checkUserExisting;
+
