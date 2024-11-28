@@ -9,8 +9,8 @@ router.get("/:username", function (req, res, next) {
     JSON.stringify(req.params.username),
     "id, todo",
     "todo",
-    "user_id",
-    res
+    res,
+    "user_id"
   );
 });
 

@@ -4,8 +4,8 @@ const { getData } = require("../SQL/getData");
 // const { addItem } = require("../SQL/addItem");
 // const { deleteItem } = require("../SQL/deleteItem");
 
-router.get("/", function (req, res, next) {
-  getData(null, "*", "post", res);
+router.get("/:page", function (req, res, next) {
+  getData(null, "*", "post", res, "user_id", req.params.page);
 });
 
 // router.post("/", function (req, res, next) {
