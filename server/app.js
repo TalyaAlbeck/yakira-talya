@@ -10,6 +10,7 @@ var createRouter = require("./routes/create");
 var loginRouter = require("./routes/login");
 var registerRouter = require("./routes/register");
 var todosRouter = require("./routes/todos");
+var postsRouter = require("./routes/posts");
 
 var app = express();
 
@@ -32,5 +33,6 @@ app.use("/create", createRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/todos", todosRouter);
+app.use("/posts", postsRouter);
 
 module.exports = app;

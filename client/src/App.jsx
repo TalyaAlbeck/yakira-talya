@@ -4,8 +4,7 @@ import "./App.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import HomeLayout from "./pages/HomeLayout";
-// import Albums from "./pages/Albums";
-// import Posts from "./pages/Posts";
+import Posts from "./pages/Posts";
 import Todos from "./pages/Todos";
 // import Info from "./pages/Info";
 import Details from "./pages/Details";
@@ -20,8 +19,7 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="details" element={<Details />} />
             <Route path="home/:id/" element={<HomeLayout />}>
-              {/* <Route path="albums" element={<Albums />} />
-              <Route path="posts" element={<Posts />} /> */}
+              <Route path="posts" element={<Posts />} />
               <Route path="todos" element={<Todos />} />
               {/* <Route path="info" element={<Info />} /> */}
             </Route>
