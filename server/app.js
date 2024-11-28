@@ -11,6 +11,7 @@ var loginRouter = require("./routes/login");
 var registerRouter = require("./routes/register");
 var todosRouter = require("./routes/todos");
 var postsRouter = require("./routes/posts");
+var commentsRouter = require("./routes/comments");
 
 var app = express();
 
@@ -34,5 +35,6 @@ app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/todos", todosRouter);
 app.use("/posts", postsRouter);
+app.use("/comments", commentsRouter);
 
 module.exports = app;
