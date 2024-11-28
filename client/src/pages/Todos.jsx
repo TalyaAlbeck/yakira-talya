@@ -68,7 +68,11 @@ export default function Todos() {
         <form>
           <label>new todo:</label>
           <br />
-          <input onChange={(e) => setNewTodo(e.target.value)}></input>
+          <input
+            className="addToDo-input"
+            autoFocus
+            onChange={(e) => setNewTodo(e.target.value)}
+          ></input>
           <br />
           <button onClick={addTodo}>save</button>
         </form>

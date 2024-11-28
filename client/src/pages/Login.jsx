@@ -32,6 +32,7 @@ export default function Login() {
       <h1 className="inside-form">Login</h1>
       <label className="inside-form">Username:</label>
       <input
+        autoFocus
         className="inside-form"
         value={username}
         onChange={(e) => setUsername(e.target.value)}

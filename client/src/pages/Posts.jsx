@@ -71,6 +71,7 @@ export default function Posts() {
         <form>
           <br />
           <input
+            autoFocus
             onChange={(e) => setNewTitle(e.target.value)}
             placeholder="title"
           ></input>
