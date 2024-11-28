@@ -16,10 +16,6 @@ export default function Comment({ id, user_id, comment, handledeleteItem }) {
           {comment}
         </span>
       </div>
-
-      {/* <div className="comment-buttons">
-        <button onClick={() => handledeleteItem(comment)}>delete</button>
-      </div> */}
     </div>
   );
 }

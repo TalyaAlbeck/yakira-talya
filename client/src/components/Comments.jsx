@@ -22,19 +22,6 @@ export default function Comments({ postId }) {
     })();
   }, []);
 
-  //   function handledeleteItem(item) {
-  //     handleDelete(comments, item, setComments, "comments", setError);
-  //   }
-
-  //   function addComment(e) {
-  //     const newComment = {
-  //       postId: parseInt(postId),
-  //       name: commentingUsername,
-  //       body: newBody,
-  //     };
-  //     addItem(e, newComment, "comments", setError, setComments, setAdd);
-  //   }
-
   return (
     <>
       {error && <p>{error}</p>}
@@ -46,27 +33,10 @@ export default function Comments({ postId }) {
               id={com.id}
               user_id={com.user_id}
               comment={com.comment}
-              //   handledeleteItem={handledeleteItem}
             />
           );
         })}
       </main>
-      {/* <button onClick={() => setAdd((prev) => !prev)}>add</button>
-      {add && (
-        <form>
-          <label>Commenting user name:</label>
-          <br />
-          <input
-            onChange={(e) => setCommentingUsername(e.target.value)}
-          ></input>
-          <br />
-          <label>Body:</label>
-          <br />
-          <input onChange={(e) => setNewBody(e.target.value)}></input>
-          <br />
-          <button onClick={addComment}>save</button>
-        </form>
-      )} */}
     </>
   );
 }
