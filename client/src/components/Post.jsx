@@ -16,18 +16,17 @@ export default function Post({ item, handelDelete, setError }) {
       <br />
       <span>{showBody ? item.body : null}</span>
 
-      {showComments ? (
-        <div className="post-comments">
-          <Comments postId={item.id} />
-        </div>
-      ) : null}
-
       <div className="post-buttons">
         <button onClick={() => setShowComments((prev) => !prev)}>
           Comments
         </button>
         <button onClick={() => setShowBody((prev) => !prev)}>Body</button>
-        <button onClick={() => handledeleteItem(item)}>delete</button>
+        <button onClick={() => handelDelete(item)}>delete</button>
+        {showComments ? (
+          <div className="post-comments">
+            <Comments postId={item.id} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

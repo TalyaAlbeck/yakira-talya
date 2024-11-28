@@ -60,6 +60,7 @@ export default function Posts() {
       setDisable(true);
       setError(postsArr.amount);
     }
+    setAdd((prev) => !prev);
   }
 
   return (
