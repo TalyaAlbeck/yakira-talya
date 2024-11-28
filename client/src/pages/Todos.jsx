@@ -9,7 +9,6 @@ import { patchRequest } from "../functions/fatchRequest";
 export default function Todos() {
   const [error, setError] = useState(null);
   const [todosList, setTodosList] = useState([]);
-  // const [isChecked, setIsChecked] = useState(item.checked);
   const [isChecked, setIsChecked] = useState(0);
   const [add, setAdd] = useState(false);
   const [newTodo, setNewTodo] = useState("");
@@ -27,28 +26,8 @@ export default function Todos() {
     })();
   }, []);
 
-  //   async function handleChecked(e) {
-  //     setIsChecked(e.target.checked);
-  //     const url = `${API_URL}/todos/${item.id}`;
-  //     const updateOption = {
-  //       method: "PATCH",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         completed: !isChecked,
-  //       }),
-  //     };
-  //     const result = await apiRequest(url, updateOption);
-  //   }
-
-  //   function handleSaveChanges() {
-  //     edit("todos", item, title, setError, setIsEdited);
-  //   }
-
   async function handleCheck(item, index) {
     console.log(item.id);
-    // setIsChecked(1);
     console.log(item.checked);
 
     const updatedList = todosList.map((item2) =>
@@ -67,7 +46,7 @@ export default function Todos() {
       username: username,
       todo: newTodo,
     };
-    const addedUser = await postRequest(newTodoObj, "todos");
+    const addedTodo = await postRequest(newTodoObj, "todos");
     const todosArr = await getRequest(`todos/${username}`);
     console.log("todosArr.text: ", todosArr.text);
     setTodosList(todosArr.text);

@@ -20,7 +20,7 @@ export default function Todo({
       <input
         type="checkbox"
         onChange={() => handleCheck(item, index)}
-        // checked={item.checked === 0 ? false : true}
+        checked={item.checked === 0 ? false : true}
       />
       <label
         style={item.checked === 1 ? { textDecoration: "line-through" } : null}
