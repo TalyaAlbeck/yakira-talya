@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Comment from "./Comment";
 import { getRequest } from "../functions/getRequest";
-// import { handleDelete } from "../functions/delete";
-// import { addItem } from "../functions/add";
+import { deleteRequest } from "../functions/deleteRequest";
 
 export default function Comments({ postId }) {
   const [comments, setComments] = useState([]);
   const [error, setError] = useState(null);
-  const [add, setAdd] = useState(false);
-  const [newBody, setNewBody] = useState("");
-  const [commentingUsername, setCommentingUsername] = useState();
 
   useEffect(() => {
     (async () => {
@@ -22,6 +18,11 @@ export default function Comments({ postId }) {
     })();
   }, []);
 
+  async function handelDelete(item) {
+    const deleteComment = await deleteRequest(item, "comments");
+    const getTheNewComments = await getRequest(`comments/${postId}`);
+  }
+
   return (
     <>
       {error && <p>{error}</p>}
@@ -33,6 +34,7 @@ export default function Comments({ postId }) {
               id={com.id}
               user_id={com.user_id}
               comment={com.comment}
+              handelDelete={handelDelete}
             />
           );
         })}

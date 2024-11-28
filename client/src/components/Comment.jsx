@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Comment({ id, user_id, comment, handledeleteItem }) {
+export default function Comment({ id, user_id, comment, handelDelete }) {
   return (
     <div className="comment-div" key={id}>
       <div className="comment-data">
@@ -15,9 +15,11 @@ export default function Comment({ id, user_id, comment, handledeleteItem }) {
           <strong>comment: </strong>
           {comment}
         </span>
-        {/* {item.user_id === JSON.parse(localStorage.getItem("userId")) && (
-          <button onClick={handelDelete}>delete</button>
-        )} */}
+        {user_id === JSON.parse(localStorage.getItem("userId")) && (
+          <button onClick={() => handelDelete({ id, user_id, comment })}>
+            delete
+          </button>
+        )}
       </div>
     </div>
   );
