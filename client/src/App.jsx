@@ -8,6 +8,7 @@ import Posts from "./pages/Posts";
 import Todos from "./pages/Todos";
 // import Info from "./pages/Info";
 import Details from "./pages/Details";
+import Info from "./pages/info";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="home/:id/" element={<HomeLayout />}>
               <Route path="posts" element={<Posts />} />
               <Route path="todos" element={<Todos />} />
+              <Route path="info" element={<Info />} />
               {/* <Route path="info" element={<Info />} /> */}
             </Route>
           </Route>

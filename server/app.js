@@ -5,7 +5,7 @@ var logger = require("morgan");
 const cors = require("cors");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+var infoRouter = require("./routes/info");
 var createRouter = require("./routes/create");
 var loginRouter = require("./routes/login");
 var registerRouter = require("./routes/register");
@@ -28,7 +28,7 @@ app.use(
 app.options("*", cors());
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/info", infoRouter);
 app.use("/create", createRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
