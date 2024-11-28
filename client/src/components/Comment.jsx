@@ -15,6 +15,9 @@ export default function Comment({ id, user_id, comment, handledeleteItem }) {
           <strong>comment: </strong>
           {comment}
         </span>
+        {/* {item.user_id === JSON.parse(localStorage.getItem("userId")) && (
+          <button onClick={handelDelete}>delete</button>
+        )} */}
       </div>
     </div>
   );

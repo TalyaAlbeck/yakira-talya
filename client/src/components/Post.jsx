@@ -22,7 +22,7 @@ export default function Post({ item, handelDelete, setError }) {
         </button>
         <button onClick={() => setShowBody((prev) => !prev)}>Body</button>
         {item.user_id === JSON.parse(localStorage.getItem("userId")) && (
-          <button onClick={handelDelete}>delete</button>
+          <button onClick={() => handelDelete(item)}>delete</button>
         )}
         {showComments ? (
           <div className="post-comments">

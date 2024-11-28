@@ -38,9 +38,6 @@ export default function Posts() {
   }
 
   async function handelDelete(item) {
-    console.log("deleted");
-    console.log(item);
-
     const deletePost = await deleteRequest(item, "posts");
     const getTheNewPosts = await getRequest(`posts/${page}`);
     setPosts(getTheNewPosts.text);
