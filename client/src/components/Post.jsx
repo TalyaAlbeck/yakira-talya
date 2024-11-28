@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import Comments from "./Comments";
+import Comments from "./Comments";
 // import { edit } from "../functions/edit";
 
 export default function Post({ item, handledeleteItem, setError }) {
@@ -25,23 +25,22 @@ export default function Post({ item, handledeleteItem, setError }) {
       <br />
       <span>{showBody ? item.body : null}</span>
 
-      {/* {showComments ? (
+      {showComments ? (
         <div className="post-comments">
           <Comments postId={item.id} />
         </div>
-      ) : null} */}
+      ) : null}
 
       <div className="post-buttons">
         {/* {!isEdited ? (
           <button onClick={() => setIsEdited(true)}>edit</button>
         ) : (
           <button onClick={handleSaveChanges}>save</button>
-        )}
+        )} */}
         <button onClick={() => setShowComments((prev) => !prev)}>
           Comments
-        </button> */}
+        </button>
         <button onClick={() => setShowBody((prev) => !prev)}>Body</button>
-        {/* <button onClick={() => handledeleteItem(item)}>delete</button> */}
       </div>
     </div>
   );
