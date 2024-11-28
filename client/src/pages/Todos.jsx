@@ -24,6 +24,25 @@ export default function Todos() {
     })();
   }, []);
 
+  //   async function handleChecked(e) {
+  //     setIsChecked(e.target.checked);
+  //     const url = `${API_URL}/todos/${item.id}`;
+  //     const updateOption = {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         completed: !isChecked,
+  //       }),
+  //     };
+  //     const result = await apiRequest(url, updateOption);
+  //   }
+
+  //   function handleSaveChanges() {
+  //     edit("todos", item, title, setError, setIsEdited);
+  //   }
+
   async function addTodo(e) {
     e.preventDefault();
     const newTodoObj = {
