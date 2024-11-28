@@ -5,7 +5,7 @@ const { addItem } = require("../SQL/addItem");
 const { deleteItem } = require("../SQL/deleteItem");
 
 router.get("/:username", function (req, res, next) {
-  getData(JSON.stringify(req.params.username), "id, todo", "todo", "user_id", res);
+  getData(JSON.stringify(req.params.username), "id, todo", "todo", res, "user_id");
 });
 
 router.post("/", function (req, res, next) {

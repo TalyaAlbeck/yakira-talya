@@ -12,16 +12,18 @@ con.connect((err) => {
   if (err) throw err;
 });
 
-function getData(username = "", columns, table, response) {
+function getData(username = "", columns, table, response, type) {
   console.log("connected");
   con.query(`SELECT id FROM user WHERE username = ${username}`, (err, res) => {
     if (err) {
       console.log(err);
+      console.log('-------------------------------------------------------------------res.length: ', res.length);
+      console.log('res: ', res);
     } else {
       let where;
       res.length === 0
         ? (where = "")
-        : (where = `WHERE ${table}.user_id = ${res[0].id}`);
+        : (where = `WHERE ${table}.${type} = ${res[0].id}`);
       con.query(`SELECT ${columns} FROM ${table} ${where}`, (err, res) => {
         if (err) throw err;
         if (res.length === 0) {
