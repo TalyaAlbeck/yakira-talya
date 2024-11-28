@@ -4,6 +4,9 @@
   /* padding: 2rem; */
   text-align: center;
 }
+.body {
+  height: 80hv;
+}
 
 .logo {
   height: 6em;
@@ -51,7 +54,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh; 
+  height: 75vh; 
   margin: 0;
 }
 
@@ -65,7 +68,8 @@
 
 .home-body {
   margin-top: 20px;
-  min-height: 80vh;
+  min-height: 50vh;
+  max-height: 80vh;
   width: 100vw;
 }
 

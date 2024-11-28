@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
 import { getRequest } from "../functions/getRequest";
+import { deleteRequest } from "../functions/deleteRequest";
 // import { searchItem } from "../functions/search";
 
 export default function Posts() {
@@ -33,6 +34,15 @@ export default function Posts() {
       setDisable(true);
       setError(postsArr.amount);
     }
+  }
+
+  async function handelDelete(item) {
+    console.log("deleted");
+    console.log(item);
+
+    const deletePost = await deleteRequest(item, "posts");
+    const getTheNewPosts = await getRequest(`posts/${page}`);
+    setPosts(getTheNewPosts.text);
   }
 
   //   function handledeleteItem(item) {
@@ -111,6 +121,7 @@ export default function Posts() {
             item={item}
             // handledeleteItem={handledeleteItem}
             setError={setError}
+            handelDelete={handelDelete}
           />
         );
       })}

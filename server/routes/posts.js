@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const { getData } = require("../SQL/getData");
 // const { addItem } = require("../SQL/addItem");
-// const { deleteItem } = require("../SQL/deleteItem");
+const { deleteItem } = require("../SQL/deleteItem");
 
 router.get("/:page", function (req, res, next) {
   getData(null, "*", "post", res, "user_id", req.params.page);
@@ -19,8 +19,9 @@ router.get("/:page", function (req, res, next) {
 //   );
 // });
 
-// router.delete("/", function (req, res, next) {
-//   deleteItem("todo", req.body.itemId, res);
-// });
+router.delete("/", function (req, res) {
+  console.log(req.body);
+  deleteItem("post", req.body.id, res);
+});
 
 module.exports = router;
