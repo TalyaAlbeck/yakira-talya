@@ -4,10 +4,13 @@ import Todo from "../components/Todo";
 import { getRequest } from "../functions/getRequest";
 import { postRequest } from "../functions/postRequest";
 import { deleteRequest } from "../functions/deleteRequest";
+import { patchRequest } from "../functions/fatchRequest";
 
 export default function Todos() {
   const [error, setError] = useState(null);
   const [todosList, setTodosList] = useState([]);
+  // const [isChecked, setIsChecked] = useState(item.checked);
+  const [isChecked, setIsChecked] = useState(0);
   const [add, setAdd] = useState(false);
   const [newTodo, setNewTodo] = useState("");
   const [searchInput, setSearchInput] = useState("");
@@ -43,6 +46,21 @@ export default function Todos() {
   //     edit("todos", item, title, setError, setIsEdited);
   //   }
 
+  async function handleCheck(item, index) {
+    console.log(item.id);
+    // setIsChecked(1);
+    console.log(item.checked);
+
+    const updatedList = todosList.map((item2) =>
+      item2.id === item.id
+        ? { ...item, checked: item2.checked === 0 ? 1 : 0 }
+        : item2
+    );
+
+    setTodosList(updatedList);
+    const updateChande = await patchRequest(updatedList[index], "todos");
+  }
+
   async function addTodo(e) {
     e.preventDefault();
     const newTodoObj = {
@@ -76,13 +94,16 @@ export default function Todos() {
           <button onClick={addTodo}>save</button>
         </form>
       )}
-      {todosList.map((item) => {
+      {todosList.map((item, index) => {
         return (
           <Todo
             key={item.id}
             item={item}
+            index={index}
             deleteItem={deleteItem}
             setError={setError}
+            handleCheck={handleCheck}
+            isChecked={isChecked}
           />
         );
       })}
