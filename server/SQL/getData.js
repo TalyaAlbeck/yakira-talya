@@ -17,8 +17,6 @@ function getData(username = "", columns, table, response, type) {
   con.query(`SELECT id FROM user WHERE username = ${username}`, (err, res) => {
     if (err) {
       console.log(err);
-      console.log('-------------------------------------------------------------------res.length: ', res.length);
-      console.log('res: ', res);
     } else {
       let where;
       res.length === 0

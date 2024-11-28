@@ -22,8 +22,6 @@ export default function Info() {
       {info ? (
         <div className="info-div">
           {infoKey.map((item, index) => {
-            console.log(info[0].item);
-
             return (
               <h4 key={infoKey[index]}>
                 {item}: {info[0][item]}
