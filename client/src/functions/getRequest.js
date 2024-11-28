@@ -3,7 +3,11 @@ export async function getRequest(path = "") {
     const request = await fetch(`http://localhost:3000/${path}`);
     const parsedResponse = await request.json();
     console.log("parsedResponse: ", parsedResponse);
-    return { text: parsedResponse.text, status: request.status };
+    return {
+      text: parsedResponse.text,
+      status: request.status,
+      amount: parsedResponse.amount,
+    };
   } catch (err) {
     console.log(err);
   }

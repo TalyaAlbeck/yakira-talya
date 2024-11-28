@@ -6,7 +6,9 @@ import { getRequest } from "../functions/getRequest";
 export default function Posts() {
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [disable, setDisable] = useState(false);
   const [add, setAdd] = useState(false);
+  const [page, setPage] = useState(0);
   const [newTitle, setNewTitle] = useState("");
   const [newBody, setNewBody] = useState("");
   const [searchInput, setSearchInput] = useState("");
@@ -16,18 +18,22 @@ export default function Posts() {
   });
   const username = localStorage.getItem("currentUserId");
 
-  //   useEffect(() => {
-  //     (async () =>
-  //       await fetchData(`posts?userId=${userId}`, "posts", setPosts, setError))();
-  //   }, []);
-
   useEffect(() => {
     (async () => {
-      const postsArr = await getRequest(`posts`);
-      console.log("postsArr: ", postsArr);
+      const postsArr = await getRequest(`posts/${page}`);
       setPosts(postsArr.text);
     })();
   }, []);
+
+  async function showMore() {
+    setPage((prev) => prev + 3);
+    const postsArr = await getRequest(`posts/${page + 3}`);
+    setPosts(postsArr.text);
+    if (postsArr.amount) {
+      setDisable(true);
+      setError(postsArr.amount);
+    }
+  }
 
   //   function handledeleteItem(item) {
   //     handleDelete(posts, item, setPosts, "posts", setError);
@@ -93,6 +99,11 @@ export default function Posts() {
 
   return (
     <>
+      <h1>Posts</h1>
+      {error && <p>{error}</p>}
+      <button disabled={disable} onClick={showMore}>
+        show next
+      </button>
       {posts.map((item) => {
         return (
           <Post

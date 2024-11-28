@@ -3,10 +3,16 @@ var router = express.Router();
 const { getData } = require("../SQL/getData");
 const { addItem } = require("../SQL/addItem");
 const { deleteItem } = require("../SQL/deleteItem");
-const { changeItem } = require('../SQL/changeItem')
+const { changeItem } = require("../SQL/changeItem");
 
 router.get("/:username", function (req, res) {
-  getData(JSON.stringify(req.params.username), "id, todo, checked", "todo", res, "user_id");
+  getData(
+    JSON.stringify(req.params.username),
+    "id, todo, checked",
+    "todo",
+    res,
+    "user_id"
+  );
 });
 
 router.post("/", function (req, res) {
@@ -28,7 +34,7 @@ router.patch("/", (req, res) => {
     `${req.body.id}`,
     res
   );
-})
+});
 
 router.delete("/", function (req, res) {
   deleteItem("todo", req.body.itemId, res);
