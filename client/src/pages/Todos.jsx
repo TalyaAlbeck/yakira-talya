@@ -51,6 +51,7 @@ export default function Todos() {
     };
     const addedUser = await postRequest(newTodoObj, "todos");
     const todosArr = await getRequest(`todos/${username}`);
+    console.log("todosArr.text: ", todosArr.text);
     setTodosList(todosArr.text);
     setAdd((prev) => !prev);
   }
