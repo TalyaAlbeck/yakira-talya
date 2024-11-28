@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import Comments from "./Comments";
 // import { edit } from "../functions/edit";
+import { deleteRequest } from "../functions/deleteRequest";
 
 export default function Post({ item, handledeleteItem, setError }) {
   const [title, setTitle] = useState(item.title);
@@ -11,6 +12,10 @@ export default function Post({ item, handledeleteItem, setError }) {
   //   function handleSaveChanges() {
   //     edit("posts", item, title, setError, setIsEdited);
   //   }
+
+  function deletePost() {
+    console.log("deleted");
+  }
 
   return (
     <div className="post-div" key={item.id}>
@@ -41,7 +46,9 @@ export default function Post({ item, handledeleteItem, setError }) {
           Comments
         </button> */}
         <button onClick={() => setShowBody((prev) => !prev)}>Body</button>
-        {/* <button onClick={() => handledeleteItem(item)}>delete</button> */}
+        {item.user_id === JSON.parse(localStorage.getItem("userId")) && (
+          <button onClick={deletePost}>delete</button>
+        )}
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export default function Login() {
     const fetchedUser = await postRequest({ username, password }, "login");
     if (fetchedUser.status === 200) {
       localStorage.setItem("currentUser", username);
+      localStorage.setItem("userId", fetchedUser.id);
       navigate(`/home/${username}`);
     } else if (fetchedUser.status === 404) {
       setError(fetchedUser.text);

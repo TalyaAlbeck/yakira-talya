@@ -29,7 +29,7 @@ function checkUser(name, password, response) {
 					text: "username/password are incorrect",
 				});
 			}
-			response.status(200).send({ text: "user entered" });
+			response.status(200).send({ text: "user entered", id: res[0].id });
 		}
 	);
 }
