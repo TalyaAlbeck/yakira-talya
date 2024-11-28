@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
 import { getRequest } from "../functions/getRequest";
 import { deleteRequest } from "../functions/deleteRequest";
+import { postRequest } from "../functions/postRequest";
 // import { searchItem } from "../functions/search";
 
 export default function Posts() {
@@ -45,72 +46,43 @@ export default function Posts() {
     setPosts(getTheNewPosts.text);
   }
 
-  //   function handledeleteItem(item) {
-  //     handleDelete(posts, item, setPosts, "posts", setError);
-  //   }
-
-  //   function addPost(e) {
-  //     const newPost = {
-  //       userId: parseInt(userId),
-  //       title: newTitle,
-  //       body: newBody,
-  //     };
-  //     addItem(e, newPost, "posts", setError, setPosts, setAdd);
-  //   }
-
-  //   function handleSearch(e) {
-  //     searchItem(e, searchInput, posts, setSearch);
-  //   }
-
-  //   return (
-  //     <>
-  //       <h1>Posts</h1>
-  //       {error !== null && <p>{error}</p>}
-  //       <button onClick={() => setAdd((prev) => !prev)}>add</button>
-  //       {add && (
-  //         <form>
-  //           <label>Title:</label><br/>
-  //           <input onChange={(e) => setNewTitle(e.target.value)}></input><br/>
-  //           <label>Body:</label><br/>
-  //           <input onChange={(e) => setNewBody(e.target.value)}></input><br/>
-  //           <button onClick={addPost}>save</button>
-  //         </form>
-  //       )}
-  //       <input
-  //         value={searchInput}
-  //         onChange={(e) => setSearchInput(e.target.value)}
-  //       />
-  //       <button onClick={handleSearch}>search</button>
-  //       <main className="posts-container">
-  //         {!search.isSearched
-  //           ? posts.map((item) => {
-  //               return (
-  //                 <Post
-  //                   key={item.id}
-  //                   item={item}
-  //                   handledeleteItem={handledeleteItem}
-  //                   setError={setError}
-  //                 />
-  //               );
-  //             })
-  //           : search.searchedItems.map((item) => {
-  //               return (
-  //                 <Post
-  //                   key={item.id + "b"}
-  //                   item={item}
-  //                   handledeleteItem={handledeleteItem}
-  //                   setError={setError}
-  //                 />
-  //               );
-  //             })}
-  //       </main>
-  //     </>
-  //   );
+  async function addPost(e) {
+    e.preventDefault();
+    const newPost = {
+      username: localStorage.getItem("currentUser"),
+      title: newTitle,
+      body: newBody,
+    };
+    const addedPost = await postRequest(newPost, "posts");
+    const postsArr = await getRequest(`posts/${page + 3}`);
+    setPosts(postsArr.text);
+    if (postsArr.amount) {
+      setDisable(true);
+      setError(postsArr.amount);
+    }
+  }
 
   return (
     <>
       <h1>Posts</h1>
       {error && <p>{error}</p>}
+      <button onClick={() => setAdd((prev) => !prev)}>add post</button>
+      {add && (
+        <form>
+          <br />
+          <input
+            onChange={(e) => setNewTitle(e.target.value)}
+            placeholder="title"
+          ></input>
+          <br />
+          <input
+            onChange={(e) => setNewBody(e.target.value)}
+            placeholder="body"
+          ></input>
+          <br />
+          <button onClick={addPost}>save</button>
+        </form>
+      )}
       <button disabled={disable} onClick={showMore}>
         show next
       </button>
