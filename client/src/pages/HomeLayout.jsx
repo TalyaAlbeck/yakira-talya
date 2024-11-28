@@ -11,7 +11,7 @@ export default function HomeLayout() {
     <>
       <NavBar />
       {error != null && <p>{error}</p>}
-      <h2>Hello {user.name}!</h2>
+      {/* <h2>Hello {user.name}!</h2> */}
       <div className="home-body">
         <Outlet />
       </div>

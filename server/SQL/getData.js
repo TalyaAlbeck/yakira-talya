@@ -12,14 +12,14 @@ con.connect((err) => {
   if (err) throw err;
 });
 
-function getData(username, columns, table, response) {
+function getData(username, columns, table, fild, response) {
   console.log("connected");
   con.query(`SELECT id FROM user WHERE username = ${username}`, (err, res) => {
     if (err) {
       console.log(err);
     } else {
       con.query(
-        `SELECT ${columns} FROM ${table} WHERE ${table}.user_id = ${res[0].id}`,
+        `SELECT ${columns} FROM ${table} WHERE ${table}.${fild} = ${res[0].id}`,
         (err, res) => {
           if (err) throw err;
           if (res.length === 0) {

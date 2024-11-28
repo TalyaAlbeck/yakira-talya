@@ -9,6 +9,7 @@ import HomeLayout from "./pages/HomeLayout";
 import Todos from "./pages/Todos";
 // import Info from "./pages/Info";
 import Details from "./pages/Details";
+import Info from "./pages/info";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               {/* <Route path="albums" element={<Albums />} />
               <Route path="posts" element={<Posts />} /> */}
               <Route path="todos" element={<Todos />} />
+              <Route path="info" element={<Info />} />
               {/* <Route path="info" element={<Info />} /> */}
             </Route>
           </Route>
